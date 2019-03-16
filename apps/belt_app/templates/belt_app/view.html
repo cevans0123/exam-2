@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>View Job</title>
+    <style>
+        body {
+            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+        #top {
+            height: 60px;
+        }
+        #top h1 {
+            width: 500px;
+            display: inline-block;
+            margin: 10px;
+        }    
+        #top a {
+            display: inline;
+            padding:10px;
+        }
+        #right {
+            display: inline-block;
+            position: absolute;
+            right: 50px;
+            margin-top: 20px;
+        }
+        h1 {
+            margin: 40px;
+        }
+        #box {
+            width: 50%;
+            height: auto;
+            padding:15px;
+            margin:40px;
+            border: 3px solid darkgray;
+        }
+        a {
+            font-size: larger;
+            text-decoration: none;
+            color: dodgerblue;
+        }
+        a:hover {
+            color:tomato;
+        }
+        #addme {
+            margin-left: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div id="top">
+        <form action="/logout" name="logout" method="POST">{% csrf_token %}
+            <div id="right">
+                <a href="/dashboard">Back</a>
+                <a href="/">Logout</a>
+            </div>
+        </form>
+    </div>
+    <h1> {{ job.title}}</h1>
+    <div id="box">
+        <p>{{ job.description }}</p>
+        <p>{{ job.location }}</p>
+        <p>Posted by: {{ job.posted.first_name }} {{ job.posted.last_name }}</p>
+        <p>Posted on: {{ job.created_at.date}}</p>       
+    </div>
+    <form action="/add" name="addjob" method="POST"></form>{% csrf_token %}
+    <a href=/{{ job.id}}/add_myjob id="addme">Add To My Jobs</a>
+
+</body>
+</html>

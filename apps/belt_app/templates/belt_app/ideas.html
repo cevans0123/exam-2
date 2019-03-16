@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Great Ideas</title>
+
+    <style>
+        body {
+            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+        #top {
+            height: 60px;
+        }
+        #top h1 {
+            width: auto;
+            display: inline-block;
+            margin: 10px;
+        }    
+        #top a {
+            display: inline;
+            padding:10px;
+        }
+        #right {
+            display: inline-block;
+            position: absolute;
+            right: 50px;
+            margin-top: 20px;
+        }
+        h1 {
+            margin: 40px;
+        }
+       #top a {
+            font-size: larger;
+            text-decoration: none;
+            color: dodgerblue;
+        }
+        #top a:hover {
+            color:tomato;
+        }
+        a {
+            font-size: large;
+            text-decoration: none;
+            color: dodgerblue;
+        }
+        a:hover {
+            color:tomato;
+        }
+    
+        #ideas {
+            display: inline-block;
+            width: 50%;
+            margin: 20px 0px 20px 50px;
+        }
+        table {
+            border: 2px solid;
+            width: 100%;
+        }
+        tr, td {
+            padding: 10px;
+            border: 1px solid;
+        }
+        th {
+            padding: 10px;
+            background-color: lightgray;
+        }
+ 
+    </style>
+</head>
+<body>
+    <div id="top">
+        <h1>Welcome, {{ user.first_name }} {{ user.last_name }}</h1>
+            <div id="right">
+                <a href="/logout_user">Logout</a>             
+            </div>
+    </div>
+    <div id="ideas">
+        <table>
+            <tr>
+                <th>Ideas</th>
+                <th>Created By:</th>
+                <th>Likes</th>
+                <th>Action</th>
+            </tr>
+            {% for idea in ideas %}
+            <tr>
+                <td>{{ idea.context}}</td>
+                <td>{{ posted.first_name }} {{ posted.last_name }}</td>
+                <td>{{ idea.likes.count }}</td>
+                <td><a href="/like">Like</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+        <button><a href="/add">Create an Idea</a></button>
+    </div>
+    
+</body>
+</html>
